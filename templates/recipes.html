@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Все рецепты
+{% endblock %}
+
+{% block body %}
+  <div class="container">
+          <h1>Все рецепты</h1>
+      {% if recipes|length > 0 %}
+          {% for el in recipes %}
+          <div class="alert alert-info">
+            <h2>{{ el.recipe_name }}</h2>
+            <a href="/recipes/{{ el.id }}" class="btn btn-warning">Детальнее</a>
+          </div>
+          {% endfor %}
+      {% else %}
+        <p>Нет рецептов!</p>
+      {% endif %}
+  </div>
+{% endblock %}

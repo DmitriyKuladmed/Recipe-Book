@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <h1>This is page for add some recipe</h1>
+    <form method="post">
+        <input type="text" name="recipe_name" id="recipe_name" class="container form-control" placeholder="Введите название рецепта"><br>
+        <textarea rows="3" cols="50" name="cooking_time" id="cooking_time" placeholder="Введите время готовки"></textarea>
+        <textarea rows="3" cols="50" name="time_type" id="time_type" placeholder="Введите тип времени (минуты, часы)"></textarea>
+        <textarea name="description" id="description" class="container form-control" placeholder="Введите описание"></textarea><br>
+        <div class="d-grid gap-2 col-6 mx-auto">
+            <input type="submit" class="btn btn-sussess" value="Отправить">
+        </div>
+    </form>
+{% endblock %}

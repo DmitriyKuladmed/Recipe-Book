@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ recipe.recipe_name }}
+{% endblock %}
+
+{% block body %}
+<div class="container" xmlns="http://www.w3.org/1999/html">
+      <h1>Информация о рецепте</h1>
+      <div class="alert alert-info">
+          <h2>{{ recipe.recipe_name }}</h2>
+          <p>Время готовки: {{ recipe.cooking_time }} {{ recipe.time_type }}</p>
+          <h6>Описание: {{ recipe.description }}</h6>
+          {% if recipe.key == False %}
+            <a href="/recipes/{{ recipe.id }}/delete" class="btn btn-warning">Удалить рецепт</a>
+            <a href="/recipes/{{ recipe.id }}/update" class="btn btn-warning">Редактировать рецепт</a>
+            <a href="/recipes/{{ recipe.id }}/add-to-favorites" class="btn btn-warning">Добавить в избранное</a>
+          {% else %}
+            <a href="/recipes/{{ recipe.id }}/delete" class="btn btn-warning">Удалить рецепт</a>
+            <a href="/recipes/{{ recipe.id }}/update" class="btn btn-warning">Редактировать рецепт</a>
+            <a class="btn btn-warning">Рецепт уже находится в Избранном</a>
+          {% endif %}
+      </div>
+
+  </div>
+{% endblock %}
