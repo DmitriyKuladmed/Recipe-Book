@@ -12,13 +12,13 @@
           <p>Время готовки: {{ recipe.cooking_time }} {{ recipe.time_type }}</p>
           <h6>Описание: {{ recipe.description }}</h6>
           {% if recipe.key == False %}
-            <a href="/recipes/{{ recipe.id }}/delete" class="btn btn-warning">Удалить рецепт</a>
-            <a href="/recipes/{{ recipe.id }}/update" class="btn btn-warning">Редактировать рецепт</a>
-            <a href="/recipes/{{ recipe.id }}/add-to-favorites" class="btn btn-warning">Добавить в избранное</a>
+            <a href="/recipes/{{ recipe.id }}/delete" class="glow-button">Удалить рецепт</a>
+            <a href="/recipes/{{ recipe.id }}/update" class="glow-button">Редактировать рецепт</a>
+            <a href="/recipes/{{ recipe.id }}/add-to-favorites" class="glow-button">Добавить в избранное</a>
           {% else %}
-            <a href="/recipes/{{ recipe.id }}/delete" class="btn btn-warning">Удалить рецепт</a>
-            <a href="/recipes/{{ recipe.id }}/update" class="btn btn-warning">Редактировать рецепт</a>
-            <a class="btn btn-warning">Рецепт уже находится в Избранном</a>
+            <a href="/recipes/{{ recipe.id }}/delete" class="glow-button">Удалить рецепт</a>
+            <a href="/recipes/{{ recipe.id }}/update" class="glow-button">Редактировать рецепт</a>
+            <a class="glow-button">Рецепт уже находится в Избранном</a>
           {% endif %}
       </div>
 

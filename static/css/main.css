@@ -1,7 +1,7 @@
 h1 {
   margin: 0;
   padding: 20px 0;
-  color: #00539F;
+  color: #FF8C00;
   text-align: center;
 }
 
@@ -10,8 +10,27 @@ body {
   width: 1200px;
   padding: 0 20px 20px 20px;
   margin: 0 auto;
+  background: #A4DADA;
+}
+
+.glow-button {
+  text-decoration: none;
+  display: inline-block;
+  padding: 5px 5px;
+  border-radius: 10px;
+  box-shadow: 0 0 40px 40px #FFA500 inset, 0 0 0 0 #FFA500;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+  letter-spacing: 2px;
+  color: white;
+  transition: .15s ease-in-out;
+}
+.glow-button:hover {
+  box-shadow: 0 0 10px 0 #FFA500 inset, 0 0 10px 4px #FFA500;
+  color: #FFA500;
 }
 
 a {
     margin: 0 auto;
+    font-size: small;
 }

@@ -4,7 +4,7 @@ from sqlalchemy import literal
 from flask import render_template
 from config import Config
 import os
-from flask_migrate import Migrate
+
 
 app = Flask(__name__)
 basedir = os.path.abspath(os.path.dirname(__file__))
@@ -14,12 +14,11 @@ app.config['SQLALCHEMY_DATABASE_URI'] =\
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
-migrate = Migrate(app, db)
 
 
 class Recipe(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    recipe_name = db.Column(db.String(30), nullable=False)
+    recipe_name = db.Column(db.String(30), nullable=True)
     cooking_time = db.Column(db.String(10), nullable=False)
     time_type = db.Column(db.String(12), nullable=False)
     description = db.Column(db.Text)
@@ -28,21 +27,25 @@ class Recipe(db.Model):
     def __repr__(self):
         return '<Recipe %r>' %self.id
 
+
 @app.route('/')
 @app.route('/recipes')
 def recipes():
     recipes = Recipe.query.all()
     return render_template("recipes.html", recipes=recipes)
 
+
 @app.route('/recipes/<int:id>')
 def recipe_detail(id):
     recipe = Recipe.query.get(id)
     return render_template("recipe_detail.html", recipe=recipe)
 
+
 @app.route('/favorites/<int:id>')
 def favorites_detail(id):
     recipe = Recipe.query.get(id)
     return render_template("favorite_detail.html", recipe=recipe)
+
 
 @app.route('/recipes/<int:id>/add-to-favorites')
 def add_to_favorites(id):
@@ -58,6 +61,7 @@ def add_to_favorites(id):
     except:
         return 'При добавлении рецепта в Избранное произошла ошибка'
 
+
 @app.route('/favorites')
 def favorite():
     list = []
@@ -66,6 +70,7 @@ def favorite():
         if i.key == True:
             list.append(i)
     return render_template("favorites.html", recipes=list)
+
 
 @app.route('/favorites/<int:id>/delete')
 def favorite_delete(id):
@@ -79,6 +84,7 @@ def favorite_delete(id):
     except:
         return 'При удалении рецепта произошла ошибка'
 
+
 @app.route('/recipes/<int:id>/delete')
 def recipe_delete(id):
     recipe = Recipe.query.get_or_404(id)
@@ -90,6 +96,7 @@ def recipe_delete(id):
 
     except:
         return 'При удалении рецепта произошла ошибка'
+
 
 @app.route('/recipes/<int:id>/update', methods=['POST', 'GET'])
 def recipe_update(id):
@@ -125,10 +132,12 @@ def createRecipe():
             db.session.add(recipe)
             db.session.commit()
             return redirect('/')
+
         except:
             return 'При создании рецепта произошла ошибка'
     else:
         return render_template("create-recipe.html")
 
+
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', debug=True)
