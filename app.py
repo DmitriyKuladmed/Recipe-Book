@@ -1,16 +1,13 @@
-from flask import Flask, request, current_app, redirect
+from flask import Flask, request, redirect
 from flask_sqlalchemy import *
-from sqlalchemy import literal
 from flask import render_template
-from config import Config
 import os
 
 
 app = Flask(__name__)
 basedir = os.path.abspath(os.path.dirname(__file__))
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] =\
-        'sqlite:///' + os.path.join(basedir, 'recipe.db')
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'recipe.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
@@ -52,7 +49,6 @@ def add_to_favorites(id):
     recipe = Recipe.query.get_or_404(id)
     if recipe.key == False:
         recipe.key = True
-
 
     try:
         db.session.commit()
@@ -124,7 +120,6 @@ def createRecipe():
         cooking_time = request.form['cooking_time']
         time_type = request.form['time_type']
         description = request.form['description']
-
 
         recipe = Recipe(recipe_name=recipe_name, cooking_time=cooking_time, time_type=time_type, description=description)
 
